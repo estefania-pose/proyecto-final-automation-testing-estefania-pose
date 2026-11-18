@@ -1,8 +1,10 @@
+import base64
 import os
 import pathlib
 import tempfile
 from datetime import datetime
 import pytest
+from pytest_html import extras
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -61,10 +63,9 @@ def pytest_runtest_makereport(item, call):
                 file_path = SCREEN_DIR / f"{safe_name}_{timestamp}.png"
                 driver.save_screenshot(str(file_path))
                 
-                if hasattr(report, 'extra'):
-                    report.extra.append({
-                        'name': 'screenshot',
-                        'format': 'image',
-                        'content': str(file_path)
-                    })
+                # pytest-html >= 4 usa `extras` (no `extra`): embebe la captura en el reporte
+                imagen_b64 = base64.b64encode(file_path.read_bytes()).decode()
+                lista_extras = getattr(report, 'extras', [])
+                lista_extras.append(extras.png(imagen_b64, name=safe_name))
+                report.extras = lista_extras
         
