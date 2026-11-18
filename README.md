@@ -1,5 +1,7 @@
 # Framework de Automatización de Pruebas (UI + API + BDD)
 
+[![CI Automation Framework](https://github.com/estefania-pose/proyecto-final-automation-testing-estefania-pose/actions/workflows/ci.yml/badge.svg)](https://github.com/estefania-pose/proyecto-final-automation-testing-estefania-pose/actions/workflows/ci.yml)
+
 Proyecto Final Integrador desarrollado en Python aplicando el patrón **Page Object Model (POM)**, pruebas parametrizadas *Data-Driven* (CSV/JSON), automatización de APIs REST, escenarios BDD con Gherkin y ejecución continua mediante GitHub Actions.
 
 ## 🚀 Tecnologías Utilizadas
