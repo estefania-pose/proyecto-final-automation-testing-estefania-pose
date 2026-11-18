@@ -16,7 +16,7 @@ Feature: Autenticacion en SauceDemo
     Then visualizo un mensaje de error en pantalla
 
   Examples:
-  | usuario         | password        |
+  | usuario         | clave           |
   | locked_out_user | secret_sauce    |
   | usuario_malo    | password_malo   |
   | standard_user   | clave_incorrecta|
