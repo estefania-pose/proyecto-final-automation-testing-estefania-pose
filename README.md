@@ -22,3 +22,32 @@ Proyecto Final Integrador desarrollado en Python aplicando el patrón **Page Obj
 1. Clonar el repositorio e instalar las dependencias:
    ```bash
    pip install -r requirements.txt
+   ```
+2. Ejecutar la suite completa (UI + API + BDD). Genera el reporte en `reports/report.html`:
+   ```bash
+   pytest
+   ```
+3. Ejecutar solo una parte de la suite:
+   ```bash
+   pytest tests/                  # UI (Selenium)
+   pytest tests_api/              # API REST
+   pytest -m smoke                # solo pruebas críticas
+   pytest -m "api and not e2e"    # combinando marcadores
+   behave                         # escenarios BDD directamente con Behave
+   ```
+
+> **Requisito:** tener Google Chrome instalado (Selenium Manager descarga el driver automáticamente).
+> En CI (`CI=true`) el navegador corre en modo *headless*.
+
+## 🥒 Cómo se integra BDD con Pytest
+`tests_behave/test_behave_suite.py` ejecuta Behave como un subproceso desde un único test de pytest.
+Por eso, en el reporte de pytest los escenarios BDD aparecen agrupados en **un solo resultado**
+(`test_ejecutar_suite_bdd`). El detalle por escenario se ve en la salida de consola de Behave
+y en `reports/behave.json`.
+
+## 📊 Evidencias generadas
+* `reports/report.html`: reporte HTML autocontenido de pytest.
+* `reports/screens/`: capturas automáticas ante cada fallo (UI y BDD).
+* `reports/behave.json`: resultado detallado de los escenarios Gherkin.
+* `logs/`: logs cronológicos de la ejecución.
+* En GitHub Actions todo se publica como artefacto `reportes-y-evidencias`.
